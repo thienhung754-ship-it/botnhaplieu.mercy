@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bot Nhập Liệu AI – Tự động nhập kho 5 giây | Mercy Tech</title>
+  <meta name="description" content="Bot AI tự động đọc hóa đơn viết tay & nhập kho Google Sheet trong 5 giây. Chính xác 99%. Không cần cài app." />
+  <meta property="og:title" content="Bot Nhập Liệu AI – 5 giây/hóa đơn | Mercy Tech" />
+  <meta property="og:description" content="Chụp ảnh hóa đơn → Gửi Telegram → Dữ liệu tự vào Google Sheet. Chính xác 99%." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<!-- URGENCY BAR -->
+<div class="urgency-bar" id="urgency-bar">
+  <span class="ub-text">⚡ Ưu đãi Demo miễn phí kết thúc sau:</span>
+  <div class="ub-timer">
+    <div class="ub-block"><span id="cd-h">03</span><small>GIỜ</small></div>
+    <span class="ub-sep">:</span>
+    <div class="ub-block"><span id="cd-m">00</span><small>PHÚT</small></div>
+    <span class="ub-sep">:</span>
+    <div class="ub-block"><span id="cd-s">00</span><small>GIÂY</small></div>
+  </div>
+  <a href="#lead-form" class="ub-cta">Đăng ký ngay →</a>
+</div>
+
+<header class="sitenav" id="sitenav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo-transparent.png" alt="Bot Nhập Liệu - Mercy Tech" class="nav-logo-img" />
+    </a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#pain">Vấn đề</a>
+      <a href="#how">Cách dùng</a>
+      <a href="#pricing">Bảng giá</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="tel:0349386979" class="nav-phone">034.938.6979</a>
+    <a href="#lead-form" class="btn-nav-cta" style="background:var(--gold);color:var(--navy)">Nhận Demo Miễn Phí</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- 1. HERO -->
+<section class="hero-section" id="home">
+  <div class="hero-inner container">
+    <div class="hero-left">
+      <div class="hero-badge">BOT NHẬP LIỆU AI · BỞI MERCY TECH</div>
+      <h1 class="hero-h1">
+        Kế toán kho đang mất <span class="h1-accent">3 tiếng/ngày</span> chỉ để gõ số —
+        Bot làm điều đó trong <span class="h1-white">5 giây.</span>
+      </h1>
+      <p class="hero-sub">
+        Chụp ảnh hóa đơn viết tay → Gửi Telegram → Dữ liệu tự vào Google Sheet.
+        Chính xác <strong>99%</strong>. Không cần cài app. Không cần đào tạo lại nhân viên.
+      </p>
+      <div class="hero-stats">
+        <div class="hstat"><span class="hstat-n counter" data-target="200">0</span><span class="hstat-u">+</span><span class="hstat-l">xưởng sỉ</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n counter" data-target="99">0</span><span class="hstat-u">%</span><span class="hstat-l">chính xác</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n counter" data-target="500">0</span><span class="hstat-u">tr+</span><span class="hstat-l">tiết kiệm/năm</span></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#lead-form" class="btn-primary" style="background:var(--gold);color:var(--navy);box-shadow:0 8px 28px rgba(240,180,41,.45)">Nhận Demo &amp; Template Miễn Phí →</a>
+        <a href="#tvc" class="btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Xem Bot hoạt động
+        </a>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="hero-form-box" id="lead-form">
+      <div class="form-badge">MIỄN PHÍ 100%</div>
+      <h2 class="form-title">Nhận Demo + File Template theo ngành của bạn</h2>
+      <p class="form-sub">Điền thông tin → Chúng tôi gọi lại trong <strong>30 phút</strong></p>
+      <form id="lead-form-el" class="lead-form" novalidate>
+        <div class="fg">
+          <label for="f-name">Họ và tên *</label>
+          <input type="text" id="f-name" name="name" placeholder="Nguyễn Văn A" required />
+          <span class="ferr" id="err-name"></span>
+        </div>
+        <div class="fg">
+          <label for="f-phone">Số điện thoại *</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="0909 123 456" required />
+          <span class="ferr" id="err-phone"></span>
+        </div>
+        <div class="fg">
+          <label for="f-biz">Ngành kinh doanh *</label>
+          <select id="f-biz" name="business" required>
+            <option value="">-- Chọn ngành --</option>
+            <option value="si">Bán sỉ / Phân phối</option>
+            <option value="sx">Sản xuất / Chế biến</option>
+            <option value="le">Bán lẻ / Cửa hàng</option>
+            <option value="nha-hang">Nhà hàng / F&amp;B</option>
+            <option value="khac">Khác</option>
+          </select>
+          <span class="ferr" id="err-biz"></span>
+        </div>
+        <button type="submit" class="btn-form-submit" id="form-btn" style="background:var(--gold);color:var(--navy)">
+          <span class="btn-txt">Nhận Demo Miễn Phí Ngay →</span>
+          <span class="btn-load" style="display:none">Đang gửi...</span>
+        </button>
+        <p class="form-priv">Không spam · Bảo mật tuyệt đối</p>
+      </form>
+      <div id="form-ok" style="display:none" class="form-success">
+        <div class="suc-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <h3>Đăng ký thành công!</h3>
+        <p>Chúng tôi sẽ gọi lại trong <strong>30 phút</strong>.</p>
+        <a href="https://zalo.me/0349386979" target="_blank" class="btn-form-submit" style="text-align:center">Chat Zalo ngay →</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 2. LOGO BAR -->
+<section class="logo-bar">
+  <div class="container">
+    <p class="lb-label">Đã triển khai tại</p>
+    <div class="lb-row">
+      <span class="lb-item">Goldenfood</span>
+      <span class="lb-dot">·</span>
+      <span class="lb-item">200+ xưởng sỉ</span>
+      <span class="lb-dot">·</span>
+      <span class="lb-item">Mercy Shop</span>
+      <span class="lb-dot">·</span>
+      <span class="lb-item">Shunyun VN</span>
+      <span class="lb-dot">·</span>
+      <span class="lb-item">10+ tỉnh thành</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PAIN -->
+<section class="pain-section" id="pain">
+  <div class="container">
+    <div class="eyebrow-lg">VẤN ĐỀ BẠN ĐANG GẶP</div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-card-img">
+          <img src="pain1.png" alt="Tăng ca đến 11 giờ đêm" />
+        </div>
+        <div class="pain-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <h3>Tăng ca đến 11 giờ đêm</h3>
+        <p>Kế toán gõ tay hàng trăm dòng mỗi ngày. Sai 1 chữ số, sếp mất trắng hàng chục triệu.</p>
+        <div class="pain-cost">Chi phí ẩn: <strong>~8tr/tháng lương tăng ca</strong></div>
+      </div>
+      <div class="pain-card reveal" style="transition-delay:.12s">
+        <div class="pain-card-img">
+          <img src="pain2.png" alt="Hóa đơn viết tay lộn xộn" />
+        </div>
+        <div class="pain-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <h3>Hóa đơn viết tay lộn xộn</h3>
+        <p>Chữ xấu, mã SKU nhòe, chụp lại còn không đọc được — chứ chưa nói nhập đúng.</p>
+        <div class="pain-cost">Chi phí ẩn: <strong>~15% sai lệch tồn kho</strong></div>
+      </div>
+      <div class="pain-card reveal" style="transition-delay:.24s">
+        <div class="pain-card-img">
+          <img src="pain3.png" alt="Tồn kho sai, báo cáo trễ" />
+        </div>
+        <div class="pain-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Tồn kho sai, báo cáo trễ</h3>
+        <p>Sếp hỏi tồn kho lúc 5h chiều — kế toán vẫn đang gõ dữ liệu lúc 10h tối.</p>
+        <div class="pain-cost">Chi phí ẩn: <strong>Quyết định sai vì số liệu trễ</strong></div>
+      </div>
+    </div>
+    <blockquote class="pain-quote">"Vấn đề không phải ở con người. Vấn đề là công việc đó <strong>không cần con người làm nữa.</strong>"</blockquote>
+  </div>
+</section>
+
+<!-- 4. TVC VIDEO -->
+<section class="tvc-section" id="tvc">
+  <div class="container">
+    <div class="video-wrap yt-wrap" id="tvc-wrap">
+      <!-- YouTube IFrame API -->
+      <div id="yt-player-wrap">
+        <div id="yt-player"></div>
+      </div>
+    </div>
+    <p class="vid-caption">Nếu cảnh này xảy ra mỗi ngày tại kho của bạn — giải pháp ngay bên dưới.</p>
+  </div>
+</section>
+
+<script>
+// ── YOUTUBE AUTOPLAY (scroll-triggered + auto-unmute) ──────
+var ytPlayer, ytMuted = true, ytReady = false, ytUnmuteDone = false;
+
+window.onYouTubeIframeAPIReady = function() {
+  ytPlayer = new YT.Player('yt-player', {
+    videoId: 'zNMDHOveyEs',
+    playerVars: {
+      autoplay: 0, mute: 1, rel: 0,
+      modestbranding: 1, playsinline: 1, controls: 1
+    },
+    events: {
+      onReady: function(e) {
+        ytReady = true;
+        e.target.mute();
+        if (isInView(document.getElementById('tvc-wrap'))) {
+          e.target.playVideo();
+        }
+      }
+    }
+  });
+};
+
+function isInView(el) {
+  if(!el) return false;
+  var r = el.getBoundingClientRect();
+  return r.top < window.innerHeight * 0.85 && r.bottom > 0;
+}
+
+// Scroll observer — play khi vào view, auto-unmute khi user đã scroll
+(function() {
+  var wrap = document.getElementById('tvc-wrap');
+  var lastIn = false;
+  window.addEventListener('scroll', function() {
+    if(!ytReady || !ytPlayer) return;
+    var inNow = isInView(wrap);
+    if(inNow && !lastIn) {
+      ytPlayer.playVideo();
+      // Auto unmute sau gesture scroll
+      if (!ytUnmuteDone) {
+        setTimeout(function() {
+          try { ytPlayer.unMute(); ytMuted = false; ytUnmuteDone = true; } catch(e) {}
+        }, 300);
+      }
+    } else if(!inNow && lastIn) {
+      ytPlayer.pauseVideo();
+    }
+    lastIn = inNow;
+  }, { passive: true });
+})();
+
+// Load YouTube IFrame API
+(function() {
+  var tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
+})();
+</script>
+
+<!-- 5. HOW IT WORKS + BENEFITS -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="eyebrow">CÁCH HOẠT ĐỘNG</div>
+    <h2 class="sec-title">3 bước — không cần cài app<br>không cần đào tạo lại nhân viên</h2>
+    <div class="steps-grid-photo">
+
+      <!-- BƯỚC 01 -->
+      <div class="step-photo-card reveal">
+        <div class="spc-img-wrap">
+          <img src="step1.jpg" alt="Chụp ảnh hóa đơn viết tay bằng điện thoại" class="spc-img" />
+          <span class="spc-badge">BƯỚC 01</span>
+        </div>
+        <div class="spc-body">
+          <h3>Chụp ảnh hóa đơn</h3>
+          <p>Dù là hóa đơn viết tay xấu, nhàu nát, chụp nghiêng — Bot vẫn đọc được nhờ AI OCR tiếng Việt.</p>
+        </div>
+      </div>
+
+      <!-- Connector arrow -->
+      <div class="step-arrow">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+
+      <!-- BƯỚC 02 -->
+      <div class="step-photo-card reveal" style="transition-delay:.15s">
+        <div class="spc-img-wrap">
+          <img src="step2.jpg" alt="Gửi ảnh lên Bot Telegram Mercy Tech" class="spc-img" />
+          <span class="spc-badge">BƯỚC 02</span>
+        </div>
+        <div class="spc-body">
+          <h3>Gửi vào Bot Telegram</h3>
+          <p>Chụp xong → gửi ảnh vào nhóm. Bot xác nhận nhập liệu ngay trong vài giây.</p>
+        </div>
+      </div>
+
+      <!-- Connector arrow -->
+      <div class="step-arrow">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+
+      <!-- BƯỚC 03 -->
+      <div class="step-photo-card reveal" style="transition-delay:.3s">
+        <div class="spc-img-wrap">
+          <img src="step3.jpg" alt="Dữ liệu tự động nhập vào Google Sheet" class="spc-img" />
+          <span class="spc-badge">BƯỚC 03</span>
+        </div>
+        <div class="spc-body">
+          <h3>Dữ liệu tự vào Google Sheet</h3>
+          <p>Đúng mã SKU, đúng số lượng, đúng giờ nhập. Báo cáo tồn kho tự động lúc 17h mỗi ngày.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- 6. CASE STUDY + VIDEO QUYỀN LỢI -->
+<section class="social-section" id="social">
+  <div class="container">
+    <h2 class="case-h">Goldenfood đã làm được.<br><span class="text-light">Bạn thì sao?</span></h2>
+    <div class="case-stats">
+      <div class="cstat reveal">
+        <div class="cnum">20 → <span class="counter" data-target="3">0</span></div>
+        <p>Nhân sự kho sau khi triển khai Bot</p>
+      </div>
+      <div class="cstat reveal" style="transition-delay:.1s">
+        <div class="cnum"><span class="counter" data-target="500">0</span> triệu</div>
+        <p>Tiết kiệm quỹ lương mỗi năm</p>
+      </div>
+      <div class="cstat reveal" style="transition-delay:.2s">
+        <div class="cnum">0</div>
+        <p>Ca tăng ca nhập số liệu kể từ khi dùng Bot</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="tquote">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="rgba(255,255,255,.25)"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+      </div>
+      <blockquote>"Trước đây cứ cuối tháng là cả phòng kho căng thẳng kinh khủng. Giờ Bot làm hết rồi, mấy đứa còn có thời gian đi ăn trưa đúng giờ."</blockquote>
+      <div class="tauthor">
+        <div class="tavatar">A</div>
+        <div><strong>Anh Minh</strong><span>Quản lý Kho · Goldenfood</span></div>
+      </div>
+    </div>
+
+    <div class="ql-img-full">
+      <img src="quyền lợi.png" alt="Quyền lợi khi đăng ký Bot Nhập Liệu" class="ql-img" />
+    </div>
+  </div>
+</section>
+
+<!-- 7. PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <div class="promo-bar">
+      <strong>ƯU ĐÃI -50% · DÙNG THỬ 3 NGÀY MIỄN PHÍ</strong>
+      <span>Áp dụng có hạn — liên hệ để nhận mã.</span>
+    </div>
+    <h2 class="price-h1">Đầu tư một lần. Tiết kiệm mãi mãi.</h2>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="ptier">KHỞI TẠO TỰ ĐỘNG HOÁ</div>
+        <h3 class="pname">Cơ Bản</h3>
+        <div class="pamount"><span class="pold">12.000.000đ</span><span class="pnew">6.000.000đ</span><span class="pnote">một lần</span></div>
+        <ul class="pfeats">
+          <li class="feat-hl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bot nhập liệu từ ảnh hóa đơn <span class="hl-badge">CORE</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tự động hoá nhập liệu cơ bản</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tư vấn thiết lập luồng tự động</li>
+          <li class="feat-hl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Cam kết tiết kiệm 100 giờ/tháng <span class="hl-badge">ĐẢM BẢO</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Chuyển giao công nghệ</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Bảo hành, bảo trì 30 ngày</li>
+        </ul>
+        <a href="#lead-form" class="btn-price-out">Bắt đầu ngay</a>
+      </div>
+      <div class="price-card featured">
+        <div class="feat-tag">PHỔ BIẾN NHẤT</div>
+        <div class="ptier">TỰ ĐỘNG LIÊN PHÒNG BAN</div>
+        <h3 class="pname">Chuyên Nghiệp</h3>
+        <div class="pamount"><span class="pold">40.000.000đ</span><span class="pnew gold-price">Liên hệ</span><span class="pnote gold-note">tư vấn miễn phí</span></div>
+        <p class="pinc">Bao gồm tất cả gói Cơ Bản, thêm:</p>
+        <ul class="pfeats">
+          <li class="feat-hl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 20+ Bộ tài liệu quy trình thực chiến <span class="hl-badge">HOT</span></li>
+          <li class="feat-hl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hệ sinh thái Trợ lý AI (Marketing, Bán hàng) <span class="hl-badge">AI</span></li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Đào tạo tư duy AI cho toàn bộ đội ngũ</li>
+          <li class="feat-hl"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Hỗ trợ &amp; tinh chỉnh hệ thống 90 ngày <span class="hl-badge">90 NGÀY</span></li>
+        </ul>
+        <a href="#lead-form" class="btn-price-gold">Bắt đầu ngay →</a>
+      </div>
+    </div>
+    <div class="guarantee">
+      <div class="g-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <p><strong>Cam kết hoàn tiền 100%</strong> trong 30 ngày nếu Bot không đạt độ chính xác 95% — không hỏi thêm câu nào.</p>
+      <a href="#lead-form" class="btn-guarantee">Dùng thử không rủi ro →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="eyebrow">CÂU HỎI THƯỜNG GẶP</div>
+    <h2 class="sec-title">Giải đáp nhanh</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Bot có đọc được chữ viết tay xấu, chụp nghiêng không?</span>
+          <svg class="farr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Có. AI OCR huấn luyện riêng trên dữ liệu hóa đơn tiếng Việt — chữ xấu, nhàu nát, chụp nghiêng, ánh sáng kém đều xử lý được. Độ chính xác trung bình <strong>99%</strong> trong thực tế.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Tôi không biết dùng Google Sheet thì sao?</span>
+          <svg class="farr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Không cần biết. Đội kỹ thuật Mercy Tech sẽ <strong>cài đặt và hướng dẫn toàn bộ</strong> trong 30 ngày đầu — từ tạo Sheet, cài Bot, đến hướng dẫn nhân viên sử dụng. Bạn chỉ cần chụp ảnh là xong.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Nếu Bot nhập sai thì ai chịu trách nhiệm?</span>
+          <svg class="farr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Mercy Tech <strong>cam kết hoàn tiền 100% trong 30 ngày</strong> nếu Bot không đạt độ chính xác 95%. Ngoài ra mỗi line dữ liệu đều có log timestamp để đối chiếu và chỉnh sửa dễ dàng.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Dữ liệu của tôi có bị lộ ra ngoài không?</span>
+          <svg class="farr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Không. Dữ liệu lưu thẳng vào <strong>Google Sheet của tài khoản bạn</strong> — Mercy Tech không lưu trữ bất kỳ dữ liệu kinh doanh nào trên server của chúng tôi.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Có hỗ trợ sau khi hết 30 ngày bảo hành không?</span>
+          <svg class="farr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Có. Sau 30 ngày, Mercy Tech vẫn hỗ trợ qua Zalo/Telegram khi phát sinh vấn đề kỹ thuật. Gói Cơ Bản là <strong>trả một lần, dùng mãi mãi</strong> — không có phí thuê bao hoặc phí ẩn.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          <span>Giá có thay đổi theo năm không?</span>
+          <svg class="farr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Không. Bạn mua một lần, sở hữu vĩnh viễn với giá hiện tại. Chi phí vận hành duy nhất là phí API server, thường <strong>dưới 200.000đ/tháng</strong> — rẻ hơn 1 ngày lương kế toán.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FINAL CTA -->
+<section class="cta-section" id="contact">
+  <div class="container">
+    <h2 class="cta-h1">Nhập liệu kho tự động 100%</h2>
+    <h2 class="cta-h2">chỉ bằng camera điện thoại.</h2>
+    <p class="cta-sub">Nhận tư vấn Demo và File Template Quản lý Xuất–Nhập–Tồn — Hoàn toàn miễn phí.</p>
+    <div class="cta-btns">
+      <a href="#lead-form" class="btn-primary" style="font-size:16px;padding:16px 40px">
+        Đăng ký ngay →
+      </a>
+    </div>
+    <div class="cta-trust">
+      <span>Bảo mật</span><span>Không spam</span><span>Phản hồi 30 phút</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <img src="logo-transparent.png" alt="Bot Nhập Liệu - Mercy Tech" class="footer-logo-img" />
+      <em class="ft">"Chụp một bức ảnh — Xong cả ngày nhập liệu."</em>
+    </div>
+    <nav class="footer-nav">
+      <a href="#how">Tính năng</a>
+      <a href="#pricing">Bảng giá</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Liên hệ</a>
+    </nav>
+  </div>
+  <div class="footer-copy">© 2026 Mercy Tech. All rights reserved.</div>
+</footer>
+
+<!-- Sticky Mobile -->
+<div class="sticky-mobile" id="sticky-mobile">
+  <a href="https://zalo.me/0349386979" target="_blank" class="sm-zalo">Chat Zalo</a>
+  <a href="tel:0349386979" class="sm-call">Gọi ngay</a>
+</div>
+
+<!-- Floating Zalo -->
+<a href="https://zalo.me/0349386979" target="_blank" class="float-zalo" id="float-zalo" aria-label="Chat Zalo">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  <span>Zalo ngay</span>
+  <span class="fp"></span>
+</a>
+
+<!-- Exit Popup -->
+<div class="exit-overlay" id="exit-overlay" style="display:none">
+  <div class="exit-popup">
+    <button class="exit-close" id="exit-close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="exit-icon">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <h3>Khoan đã!</h3>
+    <p>Nhận <strong>File Template Google Sheet miễn phí</strong> trước khi rời.</p>
+    <form id="exit-form">
+      <input type="tel" placeholder="Số điện thoại của bạn" id="exit-phone" required />
+      <button type="submit">Gửi cho tôi →</button>
+    </form>
+    <p class="exit-priv">Không spam. Gọi lại trong 30 phút.</p>
+  </div>
+</div>
+
+
+<!-- ===== LEAD MAGNET POPUP ===== -->
+<div class="lm-overlay" id="lm-overlay" onclick="closeLMPopup()"></div>
+<div class="lm-popup" id="lm-popup" role="dialog" aria-modal="true">
+  <button class="lm-close" onclick="closeLMPopup()" aria-label="Đóng">✕</button>
+
+  <div class="lm-inner">
+    <!-- CỘT TRÁI: Bìa sổ tay -->
+    <div class="lm-book-wrap">
+      <div class="lm-book-cover" id="lm-book-cover">
+        <img src="SỔ TAY Hướng dẫn HKD.pdf.png" alt="Sổ tay thuế cho nhà bán sỉ" />
+      </div>
+      <div class="lm-book-shadow"></div>
+    </div>
+
+    <!-- CỘT PHẢI: Nội dung + Form -->
+    <div class="lm-content">
+      <div class="lm-badge">🎁 Quà tặng miễn phí</div>
+      <h2 class="lm-title">SỔ TAY THUẾ<br><span>CHO NHÀ BÁN SỈ</span></h2>
+      <p class="lm-sub">12 lỗi thuế phổ biến nhất khiến nhà bán sỉ bị phạt — và cách tránh. Gửi qua Zalo miễn phí.</p>
+
+      <form class="lm-form" id="lm-form" onsubmit="submitLMForm(event)">
+        <input type="text" id="lm-name" placeholder="Họ và tên *" required />
+        <input type="tel" id="lm-phone" placeholder="Số điện thoại *" required />
+        <button type="submit" class="lm-submit">Nhận miễn phí ngay →</button>
+      </form>
+      <p class="lm-trust">🔒 Không spam · Gửi qua Zalo trong 5 phút</p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+// ── LEAD MAGNET POPUP — hiện sau 15s mỗi lần vào trang ──
+setTimeout(function(){
+  var ov = document.getElementById('lm-overlay');
+  var pp = document.getElementById('lm-popup');
+  if(ov) ov.classList.add('active');
+  if(pp) pp.classList.add('active');
+}, 15000);
+
+function closeLMPopup(){
+  document.getElementById('lm-overlay').classList.remove('active');
+  document.getElementById('lm-popup').classList.remove('active');
+}
+
+function submitLMForm(e){
+  e.preventDefault();
+  var name  = document.getElementById('lm-name').value.trim();
+  var phone = document.getElementById('lm-phone').value.trim();
+  var btn   = document.querySelector('.lm-submit');
+  btn.textContent = '⏳ Đang gửi...';
+  btn.disabled = true;
+
+  var payload = {
+    name:     name,
+    phone:    phone,
+    business: '',
+    source:   'popup-sotay',
+    utm_source:   new URLSearchParams(window.location.search).get('utm_source')   || 'direct',
+    utm_medium:   new URLSearchParams(window.location.search).get('utm_medium')   || '',
+    utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || '',
+    submitted_at: new Date().toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'})
+  };
+
+  // Dùng chung SHEET_URL với form chính (khai báo trong script.js)
+  var url = typeof SHEET_URL !== 'undefined' ? SHEET_URL : '';
+  if(url){
+    fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).catch(function(){});
+  }
+
+  btn.textContent = '✅ Đã gửi! Kiểm tra Zalo trong 5 phút.';
+  setTimeout(closeLMPopup, 2500);
+}
+</script>
+</body>
+</html>
+

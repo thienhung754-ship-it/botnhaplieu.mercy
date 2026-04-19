@@ -1,0 +1,18 @@
+# File local - không cần lên GitHub
+MỞ TRANG WEB.bat
+Index.tsx
+apps-script.gs
+
+# File quảng cáo / zip không liên quan
+*.zip
+
+# File video lớn - upload riêng hoặc dùng CDN
+TVC BOT NHẬP LIỆU .mp4
+Bản sao của MERCY TECH (2).mp4
+
+# Folder extracted
+extracted/
+
+# OS files
+Thumbs.db
+.DS_Store

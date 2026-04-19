@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" fill="none">
+  <!-- Outer ring arc (open at bottom) -->
+  <path d="M 100 15 A 85 85 0 1 1 99.99 15" stroke="#1a3a9e" stroke-width="12" fill="none" stroke-linecap="round"
+        stroke-dasharray="480 80" stroke-dashoffset="-20"/>
+
+  <!-- Lightning bolt -->
+  <polygon points="108,12  90,75  107,75  92,118  125,58  106,58" fill="#1a3a9e"/>
+
+  <!-- Robot head body -->
+  <rect x="55" y="75" width="90" height="78" rx="14" fill="#1a3a9e"/>
+
+  <!-- Robot face screen (white area) -->
+  <rect x="63" y="83" width="74" height="62" rx="10" fill="white"/>
+
+  <!-- Left eye -->
+  <circle cx="85" cy="108" r="11" fill="#1a3a9e"/>
+  <circle cx="89" cy="104" r="4" fill="white"/>
+
+  <!-- Right eye -->
+  <circle cx="115" cy="108" r="11" fill="#1a3a9e"/>
+  <circle cx="119" cy="104" r="4" fill="white"/>
+
+  <!-- Smile -->
+  <path d="M 88 128 Q 100 138 112 128" stroke="#1a3a9e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+  <!-- Left ear tab -->
+  <rect x="42" y="92" width="14" height="22" rx="5" fill="#1a3a9e"/>
+  <!-- Right ear tab -->
+  <rect x="144" y="92" width="14" height="22" rx="5" fill="#1a3a9e"/>
+
+  <!-- Platform base -->
+  <path d="M 45 160 L 30 185 L 170 185 L 155 160 Z" fill="#1a3a9e"/>
+
+  <!-- Grid lines on platform -->
+  <line x1="60" y1="163" x2="50" y2="183" stroke="white" stroke-width="1" opacity="0.4"/>
+  <line x1="80" y1="161" x2="70" y2="183" stroke="white" stroke-width="1" opacity="0.4"/>
+  <line x1="100" y1="160" x2="100" y2="183" stroke="white" stroke-width="1" opacity="0.4"/>
+  <line x1="120" y1="161" x2="130" y2="183" stroke="white" stroke-width="1" opacity="0.4"/>
+  <line x1="140" y1="163" x2="150" y2="183" stroke="white" stroke-width="1" opacity="0.4"/>
+  <!-- Horizontal grid -->
+  <line x1="38" y1="172" x2="162" y2="172" stroke="white" stroke-width="1" opacity="0.4"/>
+
+  <!-- Platform bottom edge highlight -->
+  <rect x="30" y="183" width="140" height="5" rx="2.5" fill="#152e80"/>
+</svg>
