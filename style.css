@@ -560,3 +560,20 @@ ul{list-style:none}
 #yt-player-wrap{position:relative;width:100%;padding-top:56.25%}
 #yt-player-wrap iframe,
 #yt-player{position:absolute;top:0;left:0;width:100%!important;height:100%!important;border:none}
+
+/* ===== MOBILE FIXES ===== */
+/* Ẩn text dài trên mobile */
+@media(max-width:560px){
+  .ub-hide-mobile{display:none}
+  
+  /* Urgency bar không bị vỡ */
+  .urgency-bar{flex-wrap:nowrap;gap:6px;padding:6px 10px;justify-content:center}
+  .ub-text{font-size:11px;white-space:nowrap;flex-shrink:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .ub-timer{gap:4px;flex-shrink:0}
+  .ub-block{min-width:32px;padding:3px 4px}
+  .ub-block span{font-size:14px}
+  .ub-cta{font-size:11px;padding:5px 10px;white-space:nowrap;flex-shrink:0}
+
+  /* Bỏ sticky-mobile chiếm chỗ */
+  .sticky-mobile{display:none!important}
+}
